@@ -7,11 +7,11 @@
     </head>
 
     <body>
-        <h1>Hei!</h1>
+        <h1>Ainesosat</h1>
         
         <ul>
-            <li th:each="drinkki: ${drinkit}">
-                <span th:text="${drinkki.nimi}">drinkin nimi</span> <a th:href="${'/drinkit/' + drinkki.id}">linkki</a>
+            <li th:each="ainesosa: ${ainesosat}">
+                <span th:text="${ainesosa.nimi}">ainesosan nimi</span>
             </li>
         </ul>
     </body>
