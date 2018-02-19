@@ -9,7 +9,12 @@
     <body>
         <h1>Drinkkisovellus</h1>
 
-        <p>Ja .. <span th:text="${viesti}">jotain?</span></p>
+        <p><span th:text="${viesti}">jotain?</span></p>
+        <ol>
+            <li th:each="drinkki: ${drinkit}">
+                <span th:text="${drinkki.nimi}">drinkin nimi</span> <a th:href="${'/drinkit/' + drinkki.id}">linkki</a>
+            </li>
+        </ol>
 
         <p><a href="/drinkit">Tästä drinkkilistaukseen.</a></p>
     </body>

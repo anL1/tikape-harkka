@@ -9,10 +9,10 @@
     <body>
         <h1>Hei!</h1>
 
-        <ol>
+        <ul>
             <li th:each="drinkki: ${drinkit}">
                 <span th:text="${drinkki.nimi}">drinkin nimi</span> <a th:href="${'/drinkit/' + drinkki.id}">linkki</a>
             </li>
-        </ol>
+        </ul>
     </body>
 </html>
