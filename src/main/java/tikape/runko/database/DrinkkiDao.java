@@ -24,7 +24,7 @@ public class DrinkkiDao implements Dao<Drinkki, Integer> {
     @Override
     public Drinkki findOne(Integer key) throws SQLException {
         Connection connection = database.getConnection();
-        PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Opiskelija WHERE id = ?");
+        PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Drinkki WHERE id = ?");
         stmt.setObject(1, key);
 
         ResultSet rs = stmt.executeQuery();
@@ -36,35 +36,35 @@ public class DrinkkiDao implements Dao<Drinkki, Integer> {
         Integer id = rs.getInt("id");
         String nimi = rs.getString("nimi");
 
-        Drinkki o = new Drinkki(id, nimi);
+        Drinkki drinkki = new Drinkki(id, nimi);
 
         rs.close();
         stmt.close();
         connection.close();
 
-        return o;
+        return drinkki;
     }
 
     @Override
     public List<Drinkki> findAll() throws SQLException {
 
         Connection connection = database.getConnection();
-        PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Opiskelija");
+        PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Drinkki");
 
         ResultSet rs = stmt.executeQuery();
-        List<Drinkki> opiskelijat = new ArrayList<>();
+        List<Drinkki> drinkit = new ArrayList<>();
         while (rs.next()) {
             Integer id = rs.getInt("id");
             String nimi = rs.getString("nimi");
 
-            opiskelijat.add(new Drinkki(id, nimi));
+            drinkit.add(new Drinkki(id, nimi));
         }
 
         rs.close();
         stmt.close();
         connection.close();
 
-        return opiskelijat;
+        return drinkit;
     }
 
     @Override
