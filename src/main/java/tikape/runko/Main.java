@@ -11,7 +11,7 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
         Database database = new Database("jdbc:sqlite:drinkki.db");
-        database.init();
+//        database.init();
 
         DrinkkiDao drinkkiDao = new DrinkkiDao(database);
 
