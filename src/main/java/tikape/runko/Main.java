@@ -22,18 +22,18 @@ public class Main {
             return new ModelAndView(map, "index");
         }, new ThymeleafTemplateEngine());
 
-        get("/opiskelijat", (req, res) -> {
+        get("/drinkit", (req, res) -> {
             HashMap map = new HashMap<>();
-            map.put("opiskelijat", drinkkiDao.findAll());
+            map.put("drinkit", drinkkiDao.findAll());
 
-            return new ModelAndView(map, "opiskelijat");
+            return new ModelAndView(map, "drinkit");
         }, new ThymeleafTemplateEngine());
 
-        get("/opiskelijat/:id", (req, res) -> {
+        get("/drinkit/:id", (req, res) -> {
             HashMap map = new HashMap<>();
-            map.put("opiskelija", drinkkiDao.findOne(Integer.parseInt(req.params("id"))));
+            map.put("drinkki", drinkkiDao.findOne(Integer.parseInt(req.params("id"))));
 
-            return new ModelAndView(map, "opiskelija");
+            return new ModelAndView(map, "drinkki");
         }, new ThymeleafTemplateEngine());
     }
 }
