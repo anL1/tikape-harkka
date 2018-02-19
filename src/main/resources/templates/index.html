@@ -8,14 +8,14 @@
 
     <body>
         <h1>Drinkkisovellus</h1>
-
         <p><span th:text="${viesti}">jotain?</span></p>
-        <ol>
+        <h2>Drinkkilistaus</h2>
+        <ul>
             <li th:each="drinkki: ${drinkit}">
                 <span th:text="${drinkki.nimi}">drinkin nimi</span> <a th:href="${'/drinkit/' + drinkki.id}">linkki</a>
             </li>
-        </ol>
+        </ul>
 
-        <p><a href="/drinkit">Tästä drinkkilistaukseen.</a></p>
+        <p><a href="/drinkit">Tästä ainesosalistaukseen.</a></p>
     </body>
 </html>
