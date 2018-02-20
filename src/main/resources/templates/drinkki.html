@@ -9,10 +9,11 @@
     <body>
         <h1><span th:text="${drinkki.nimi}">drinkki</span>!</h1>
 
-        <p>Olet saapunut drinkin <span th:text="${drinkki.nimi}">drinkki</span> henkilökohtaiselle sivulle.</p>
+        <p>Olet saapunut drinkin <span th:text="${drinkki.nimi}">drinkki</span> sivulle.</p>
         <ol>
-            <li th:each="ainesosa: ${DrinkinAinesosat}">
-                <span th:text="${ainesosa.nimi}">ainesosan nimi</span>
+            <li th:each="drinkinAinesosa: ${drinkinAinesosat}">
+                <span th:text="${drinkinAinesosa.maara}">ainesosan nimi</span>
+                <span th:text="${drinkinAinesosa.ainesosa.nimi}">ainesosan nimi</span>
             </li>
         </ol>
     </body>

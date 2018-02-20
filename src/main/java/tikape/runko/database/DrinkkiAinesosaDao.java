@@ -28,12 +28,16 @@ public class DrinkkiAinesosaDao {
 
     public List<DrinkkiAinesosa> findAll(Integer id) throws SQLException {
         Connection connection = database.getConnection();
-        PreparedStatement stmt = connection.prepareStatement("SELECT * FROM DrinkkiAinesosa"
+        PreparedStatement stmt = connection.prepareStatement("SELECT * FROM DrinkkiAinesosa "
                 + "Where drinkki_id = ?");
         stmt.setObject(1, id);
 
         ResultSet rs = stmt.executeQuery();
         List<DrinkkiAinesosa> drinkinainesosat = new ArrayList<>();
+        boolean hasOne = rs.next();
+        if(!hasOne){
+            return null; 
+        }
         while (rs.next()) {
             Integer drinkki_id = rs.getInt("drinkki_id");
             Integer ainesosa_id = rs.getInt("ainesosa_id");
