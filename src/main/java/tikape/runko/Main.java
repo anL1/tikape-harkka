@@ -4,9 +4,7 @@ import java.util.HashMap;
 import spark.ModelAndView;
 import static spark.Spark.*;
 import spark.template.thymeleaf.ThymeleafTemplateEngine;
-import tikape.runko.database.AinesosaDao;
-import tikape.runko.database.Database;
-import tikape.runko.database.DrinkkiDao;
+import tikape.runko.database.*;
 
 public class Main {
 
@@ -16,6 +14,7 @@ public class Main {
 
         DrinkkiDao drinkkiDao = new DrinkkiDao(database);
         AinesosaDao ainesosaDao = new AinesosaDao(database);
+        DrinkkiAinesosaDao drinkkiAinesosaDao = new DrinkkiAinesosaDao(database, drinkkiDao, ainesosaDao);
 
         get("/", (req, res) -> {
             HashMap map = new HashMap<>();
@@ -35,6 +34,7 @@ public class Main {
         get("/drinkit/:id", (req, res) -> {
             HashMap map = new HashMap<>();
             map.put("drinkki", drinkkiDao.findOne(Integer.parseInt(req.params("id"))));
+            map.put("drinkinAinesosat", drinkkiAinesosaDao.findAll(Integer.parseInt(req.params("id"))));
 
             return new ModelAndView(map, "drinkki");
         }, new ThymeleafTemplateEngine());
