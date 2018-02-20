@@ -15,7 +15,26 @@ public class AinesosaDao implements Dao<Ainesosa, Integer>{
     }
     @Override
     public Ainesosa findOne(Integer key) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Connection connection = database.getConnection();
+        PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Ainesosa WHERE id = ?");
+        stmt.setObject(1, key);
+
+        ResultSet rs = stmt.executeQuery();
+        boolean hasOne = rs.next();
+        if (!hasOne) {
+            return null;
+        }
+
+        Integer id = rs.getInt("id");
+        String nimi = rs.getString("nimi");
+
+        Ainesosa ainesosa = new Ainesosa(id, nimi);
+
+        rs.close();
+        stmt.close();
+        connection.close();
+
+        return ainesosa;
     }
 
     @Override
