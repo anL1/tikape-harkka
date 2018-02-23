@@ -16,7 +16,7 @@ public class DrinkkiAinesosaDao {
     public DrinkkiAinesosaDao(Database database, DrinkkiDao ddao, AinesosaDao adao) {
         this.database = database;
         this.Adao = adao;
-        this.Ddao = Ddao;
+        this.Ddao = ddao;
     }
 
 //    @Override
