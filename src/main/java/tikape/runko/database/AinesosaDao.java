@@ -58,6 +58,27 @@ public class AinesosaDao implements Dao<Ainesosa, Integer>{
 
         return ainesosat;
     }
+    public Ainesosa save(Ainesosa ainesosa) throws SQLException {
+        Connection connection = database.getConnection();
+        PreparedStatement tarkistaAinesosa = connection.prepareStatement("SELECT * FROM Ainesosa "
+                + "WHERE nimi = ?");
+        tarkistaAinesosa.setString(1, ainesosa.getNimi());
+        ResultSet tarkistus = tarkistaAinesosa.executeQuery();
+        boolean loytyyko = tarkistus.next();
+        if(loytyyko == false) {
+            tarkistaAinesosa.close();
+            tarkistus.close();
+            
+            PreparedStatement stmt = connection.prepareStatement("INSERT INTO Ainesosa (nimi) VALUES (?)");
+            stmt.setString(1, ainesosa.getNimi());
+            stmt.executeUpdate();
+            stmt.close();
+            
+        }
+
+        connection.close();
+        return null;
+    }
 
     @Override
     public void delete(Integer key) throws SQLException {
