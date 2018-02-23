@@ -34,10 +34,7 @@ public class DrinkkiAinesosaDao {
 
         ResultSet rs = stmt.executeQuery();
         List<DrinkkiAinesosa> drinkinainesosat = new ArrayList<>();
-        boolean hasOne = rs.next();
-        if(!hasOne){
-            return null; 
-        }
+
         while (rs.next()) {
             Integer drinkki_id = rs.getInt("drinkki_id");
             Integer ainesosa_id = rs.getInt("ainesosa_id");
