@@ -71,5 +71,26 @@ public class DrinkkiDao implements Dao<Drinkki, Integer> {
     public void delete(Integer key) throws SQLException {
         // ei toteutettu
     }
+    public Drinkki save(Drinkki drinkki) throws SQLException {
+        Connection connection = database.getConnection();
+        PreparedStatement tarkistaAinesosa = connection.prepareStatement("SELECT * FROM Drinkki "
+                + "WHERE nimi = ?");
+        tarkistaAinesosa.setString(1, drinkki.getNimi());
+        ResultSet tarkistus = tarkistaAinesosa.executeQuery();
+        boolean loytyyko = tarkistus.next();
+        if(loytyyko == false) {
+            tarkistaAinesosa.close();
+            tarkistus.close();
+            
+            PreparedStatement stmt = connection.prepareStatement("INSERT INTO Drinkki (nimi) VALUES (?)");
+            stmt.setString(1, drinkki.getNimi());
+            stmt.executeUpdate();
+            stmt.close();
+            
+        }
+
+        connection.close();
+        return null;
+    }
 
 }
