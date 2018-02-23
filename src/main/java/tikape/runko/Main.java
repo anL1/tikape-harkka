@@ -1,5 +1,6 @@
 package tikape.runko;
 
+import java.sql.*;
 import java.util.HashMap;
 import spark.ModelAndView;
 import static spark.Spark.*;
@@ -23,7 +24,28 @@ public class Main {
             return "";
         });
         
+        get("/error", (req, res) -> {
+            HashMap map = new HashMap();
+            map.put("error", null);
+            
+            return new ModelAndView(map, "error");
+        }, new ThymeleafTemplateEngine());
+        
         post("/ainesosat/poista/:id", (req, res) -> {
+            Connection c = database.getConnection();
+            PreparedStatement stmt = c.prepareStatement("SELECT * FROM DrinkkiAinesosa "
+                    + "WHERE ainesosa_id = ?");
+            stmt.setInt(1, Integer.parseInt(req.params("id")));
+            ResultSet rs = stmt.executeQuery();
+            boolean onko = rs.next();
+            if(onko){
+                rs.close();
+                stmt.close();
+                c.close();
+                res.redirect("/error");
+                return "";
+            }
+            
             ainesosaDao.delete(Integer.parseInt(req.params("id")));
             res.redirect("/ainesosat");
             return "";
