@@ -23,8 +23,8 @@ public class Main {
             return "";
         });
         
-        get("/ainesosat/:id/poista", (req, res) -> {
-            ainesosaDao.delete(Integer.parseInt(req.queryParams("id")));
+        post("/ainesosat/poista/:id", (req, res) -> {
+            ainesosaDao.delete(Integer.parseInt(req.params("id")));
             res.redirect("/ainesosat");
             return "";
         });

@@ -11,7 +11,9 @@
         
         <ul>
             <li th:each="ainesosa: ${ainesosat}">
-                <span th:text="${ainesosa.nimi}">ainesosan nimi</span>
+                <span th:text="${ainesosa.nimi}">ainesosan nimi</span> <form method="POST" th:action="@{~/ainesosat/poista/{id}(id=${ainesosa.id})}">
+                    <input type="submit" value="poista"/>
+                </form>
             </li>
         </ul>
         <h2>Lisää uusi ainesosa</h2>
