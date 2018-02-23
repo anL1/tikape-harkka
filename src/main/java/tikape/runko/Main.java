@@ -5,6 +5,7 @@ import spark.ModelAndView;
 import static spark.Spark.*;
 import spark.template.thymeleaf.ThymeleafTemplateEngine;
 import tikape.runko.database.*;
+import tikape.runko.domain.Ainesosa;
 
 public class Main {
 
@@ -16,6 +17,13 @@ public class Main {
         AinesosaDao ainesosaDao = new AinesosaDao(database);
         DrinkkiAinesosaDao drinkkiAinesosaDao = new DrinkkiAinesosaDao(database, drinkkiDao, ainesosaDao);
 
+        post("/ainesosat", (req, res) -> {
+            //AinesosaDao.save(new Ainesosa(null,req.queryParams("name")));
+            res.redirect("/ainesosat");
+            return "";
+        });
+
+        
         get("/", (req, res) -> {
             HashMap map = new HashMap<>();
             map.put("viesti", "Tervetuloa drinkkisovellukseen!");
