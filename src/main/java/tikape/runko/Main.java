@@ -22,7 +22,12 @@ public class Main {
             res.redirect("/ainesosat");
             return "";
         });
-
+        
+        get("/drinkit/:id", (req, res) -> {
+            ainesosaDao.delete(Integer.parseInt(req.queryParams("id")));
+            res.redirect("/ainesosat");
+            return "";
+        });
         
         get("/", (req, res) -> {
             HashMap map = new HashMap<>();
