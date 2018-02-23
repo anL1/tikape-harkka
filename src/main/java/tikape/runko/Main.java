@@ -18,7 +18,7 @@ public class Main {
         DrinkkiAinesosaDao drinkkiAinesosaDao = new DrinkkiAinesosaDao(database, drinkkiDao, ainesosaDao);
 
         post("/ainesosat", (req, res) -> {
-            //AinesosaDao.save(new Ainesosa(null,req.queryParams("name")));
+            ainesosaDao.save(new Ainesosa(null,req.queryParams("name")));
             res.redirect("/ainesosat");
             return "";
         });
