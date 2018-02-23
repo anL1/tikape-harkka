@@ -12,10 +12,10 @@
         <h2>Drinkkilistaus</h2>
         <ul>
             <li th:each="drinkki: ${drinkit}">
-                <span th:text="${drinkki.nimi}">drinkin nimi</span> <a th:href="${'/drinkit/' + drinkki.id}">linkki</a>
+                <a th:href="${'/drinkit/' + drinkki.id}"><span th:text="${drinkki.nimi}">drinkin nimi</span></a>
             </li>
         </ul>
 
-        <p><a href="/ainesosat">Tästä ainesosalistaukseen.</a></p>
+        <p><a href="/ainesosat">Ainesosalistaus ja uuden ainesosan lisäys.</a></p>
     </body>
 </html>
