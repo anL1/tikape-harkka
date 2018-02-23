@@ -23,7 +23,7 @@ public class Main {
             return "";
         });
         
-        get("/drinkit/:id", (req, res) -> {
+        get("/ainesosat/:id/poista", (req, res) -> {
             ainesosaDao.delete(Integer.parseInt(req.queryParams("id")));
             res.redirect("/ainesosat");
             return "";
