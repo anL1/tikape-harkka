@@ -43,6 +43,14 @@ public class Main {
 
             return new ModelAndView(map, "ainesosat");
         }, new ThymeleafTemplateEngine());
+        
+        get("/drinkit", (req, res) -> {
+            HashMap map = new HashMap();
+            map.put("drinkit", drinkkiDao.findAll());
+            
+            
+            return new ModelAndView(map, "drinkit");
+        }, new ThymeleafTemplateEngine());
 
         get("/drinkit/:id", (req, res) -> {
             HashMap map = new HashMap<>();

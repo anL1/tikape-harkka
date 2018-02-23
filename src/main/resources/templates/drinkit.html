@@ -3,19 +3,17 @@
 
     <head>
         <title>Pakko ottaa</title>
-        <meta charset="utf-8" />
+        <meta charset="UTF-8"/>
+        
     </head>
-
     <body>
-        <h1>Drinkkisovellus</h1>
-        <p><span th:text="${viesti}">jotain?</span></p>
         <h2>Drinkkilistaus</h2>
         <ul>
             <li th:each="drinkki: ${drinkit}">
                 <a th:href="${'/drinkit/' + drinkki.id}"><span th:text="${drinkki.nimi}">drinkin nimi</span></a>
             </li>
         </ul>
-        <p><a href="/drinkit">Lisää uusi drinkki</a></p>
-        <p><a href="/ainesosat">Ainesosalistaus ja uuden ainesosan lisäys.</a></p>
+        
+        <p><a href="/">Takaisin etusivulle</a></p>
     </body>
 </html>
