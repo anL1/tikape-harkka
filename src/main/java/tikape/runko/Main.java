@@ -88,6 +88,23 @@ public class Main {
             return "";
         });
         
+        get("/statistiikka", (req, res) -> {
+            HashMap map = new HashMap<>();
+            Connection connection = database.getConnection();
+            PreparedStatement statement = connection.prepareStatement("SELECT COUNT(*) FROM Drinkki");
+            ResultSet rs = statement.executeQuery();
+            
+            int maara = rs.getInt("count(*)");
+            System.out.println(maara);
+
+            rs.close();
+            statement.close();
+            
+            map.put("DrinkkienMaara", maara);
+            
+            return new ModelAndView(map, "statistiikka");
+        }, new ThymeleafTemplateEngine());
+        
         get("/error2", (req, res) -> {
             HashMap map = new HashMap();
             map.put("error", null);
