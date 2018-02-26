@@ -4,7 +4,7 @@
     <head>
         <title>Pakko ottaa</title>
         <meta charset="UTF-8"/>
-        
+
     </head>
     <body>
         <h2>Drinkkilistaus</h2>
@@ -15,13 +15,34 @@
                 </form>
             </li>
         </ul>
-        
+
         <form method="POST" action="/drinkit">
             <span>Drinkin nimi:</span><br/>
             <input type="text" name="name"/><br/>
             <input type="submit" value="Lisää"/>
         </form>
-        
+
+        <h3>Lisää raaka-aineita</h3>
+
+        <form method="POST" action="/lisaadrinkki">
+            <p>Drinkin nimi</p>
+            <select>
+                <option th:each="drinkki: ${drinkit}" value="${drinkki.id}" th:text="${drinkki.nimi}">drinkin nimi</option>
+            </select> 
+            <p>Ainesosan nimi</p>
+            <select>
+                <option th:each="ainesosa: ${ainesosat}" value="${ainesosa.id}" th:text="${ainesosa.nimi}">ainesosan nimi</option>
+            </select>
+            <p>Järjestys</p>
+            <input type="text" name="jarjestys"/><br/>
+            <p>Määrä</p>
+            <input type="text" name="maara"/><br/>
+            <p>Ohje</p>
+            <input type="text" name="ohje"/><br/>
+            
+            <input type="submit" value="Lisää" />
+        </form>
+
         <p><a href="/">Takaisin etusivulle</a></p>
     </body>
 </html>
