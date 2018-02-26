@@ -9,7 +9,7 @@ import tikape.runko.database.*;
 import tikape.runko.domain.*;
 
 public class Main {
-
+    
     public static void main(String[] args) throws Exception {
         Database database = new Database("jdbc:sqlite:drinkki.db");
 //        database.init();
@@ -17,9 +17,9 @@ public class Main {
         DrinkkiDao drinkkiDao = new DrinkkiDao(database);
         AinesosaDao ainesosaDao = new AinesosaDao(database);
         DrinkkiAinesosaDao drinkkiAinesosaDao = new DrinkkiAinesosaDao(database, drinkkiDao, ainesosaDao);
-
+        
         post("/ainesosat", (req, res) -> {
-            ainesosaDao.save(new Ainesosa(null,req.queryParams("name")));
+            ainesosaDao.save(new Ainesosa(null, req.queryParams("name")));
             res.redirect("/ainesosat");
             return "";
         });
@@ -38,7 +38,7 @@ public class Main {
             stmt.setInt(1, Integer.parseInt(req.params("id")));
             ResultSet rs = stmt.executeQuery();
             boolean onko = rs.next();
-            if(onko){
+            if (onko) {
                 rs.close();
                 stmt.close();
                 c.close();
@@ -63,14 +63,14 @@ public class Main {
             HashMap map = new HashMap<>();
             map.put("viesti", "Tervetuloa drinkkisovellukseen!");
             map.put("drinkit", drinkkiDao.findAll());
-
+            
             return new ModelAndView(map, "index");
         }, new ThymeleafTemplateEngine());
-
+        
         get("/ainesosat", (req, res) -> {
             HashMap map = new HashMap<>();
             map.put("ainesosat", ainesosaDao.findAll());
-
+            
             return new ModelAndView(map, "ainesosat");
         }, new ThymeleafTemplateEngine());
         
@@ -83,16 +83,31 @@ public class Main {
         }, new ThymeleafTemplateEngine());
         
         post("/drinkit", (req, res) -> {
-            drinkkiDao.save(new Drinkki(null,req.queryParams("name")));
+            drinkkiDao.save(new Drinkki(null, req.queryParams("name")));
             res.redirect("/drinkit");
             return "";
         });
-
+        
+        post("/lisaadrinkki", (req, res) -> {
+            Drinkki drinkki = drinkkiDao.findOne(Integer.parseInt(req.queryParams("drinkkinimi")));
+            Ainesosa ainesosa = ainesosaDao.findOne(Integer.parseInt(req.queryParams("ainesosanimi")));
+            int jarjestys = Integer.parseInt(req.queryParams("jarjestys"));
+            int maara = Integer.parseInt((req.queryParams("maara")));
+            String ohje = req.queryParams("ohje");
+            
+            System.out.println(ohje);
+            
+            drinkkiAinesosaDao.save(new DrinkkiAinesosa(drinkki, ainesosa, jarjestys, maara, ohje));
+            
+            res.redirect("/drinkit");
+            return "";            
+        });
+        
         get("/drinkit/:id", (req, res) -> {
             HashMap map = new HashMap<>();
             map.put("drinkki", drinkkiDao.findOne(Integer.parseInt(req.params("id"))));
             map.put("drinkinAinesosat", drinkkiAinesosaDao.findAll(Integer.parseInt(req.params("id"))));
-
+            
             return new ModelAndView(map, "drinkki");
         }, new ThymeleafTemplateEngine());
     }
