@@ -10,14 +10,17 @@
         <h1><span th:text="${drinkki.nimi}">drinkki</span>!</h1>
 
         <p>Olet saapunut drinkin <span th:text="${drinkki.nimi}">drinkki</span> sivulle.</p>
-        <ul>
+        
+        <h2>Valmistusohjeet</h2>
+        
+        <ol>
             <li th:each="drinkinAinesosa: ${drinkinAinesosat}">
-                <span th:text="${drinkinAinesosa.jarjestys}">ainesosan nimi</span>
-                <span th:text="${drinkinAinesosa.ainesosa.nimi}">ainesosan nimi</span>
-                <span>määrä: </span> <span th:text="${drinkinAinesosa.maara}">ainesosan nimi</span> <span>annosta</span>
-                <span th:text="${drinkinAinesosa.ohje}">ainesosan nimi</span>
+<!--                <span th:text="${drinkinAinesosa.jarjestys}">ainesosan nimi</span>-->
+                <span>Lisää: </span><span th:text="${drinkinAinesosa.ainesosa.nimi}">ainesosan nimi</span>
+                <span>, määrä </span> <span th:text="${drinkinAinesosa.maara}">ainesosan nimi</span> <span>annosta.</span>
+                <span>Ohje: </span><span th:text="${drinkinAinesosa.ohje}">ainesosan nimi</span>
             </li>
-        </ul>
+        </ol>
         <p><a href="/">Takaisin etusivulle</a></p>
     </body>
 </html>

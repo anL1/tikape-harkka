@@ -10,7 +10,9 @@
         <h2>Drinkkilistaus</h2>
         <ul>
             <li th:each="drinkki: ${drinkit}">
-                <a th:href="${'/drinkit/' + drinkki.id}"><span th:text="${drinkki.nimi}">drinkin nimi</span></a>
+                <a th:href="${'/drinkit/' + drinkki.id}"><span th:text="${drinkki.nimi}">drinkin nimi</span></a> <form method="POST" th:action="@{~/drinkit/poista/{id}(id=${drinkki.id})}">
+                    <input type="submit" value="poista"/>
+                </form>
             </li>
         </ul>
         
