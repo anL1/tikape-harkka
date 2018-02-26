@@ -88,19 +88,28 @@ public class Main {
             return "";
         });
         
+        get("/error2", (req, res) -> {
+            return "";
+        });
+        
         post("/lisaadrinkki", (req, res) -> {
-            Drinkki drinkki = drinkkiDao.findOne(Integer.parseInt(req.queryParams("drinkkinimi")));
-            Ainesosa ainesosa = ainesosaDao.findOne(Integer.parseInt(req.queryParams("ainesosanimi")));
-            int jarjestys = Integer.parseInt(req.queryParams("jarjestys"));
-            int maara = Integer.parseInt((req.queryParams("maara")));
-            String ohje = req.queryParams("ohje");
-            
-            System.out.println(ohje);
-            
-            drinkkiAinesosaDao.save(new DrinkkiAinesosa(drinkki, ainesosa, jarjestys, maara, ohje));
-            
-            res.redirect("/drinkit");
-            return "";            
+            try {
+                Drinkki drinkki = drinkkiDao.findOne(Integer.parseInt(req.queryParams("drinkkinimi")));
+                Ainesosa ainesosa = ainesosaDao.findOne(Integer.parseInt(req.queryParams("ainesosanimi")));
+                int jarjestys = Integer.parseInt(req.queryParams("jarjestys"));
+                int maara = Integer.parseInt((req.queryParams("maara")));
+                String ohje = req.queryParams("ohje");
+
+                System.out.println(ohje);
+
+                drinkkiAinesosaDao.save(new DrinkkiAinesosa(drinkki, ainesosa, jarjestys, maara, ohje));
+
+                res.redirect("/drinkit");
+                return "";            
+            } catch (Exception e){
+                res.redirect("/error2");
+                return "";
+            }
         });
         
         get("/drinkit/:id", (req, res) -> {
