@@ -55,9 +55,15 @@ public class DrinkkiAinesosaDao {
         return drinkinainesosat;
     }
 
-//    @Override
-//    public void delete(Integer key) throws SQLException {
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-//    }
+    public void delete(Integer key) throws SQLException {
+        Connection conn = database.getConnection();
+        PreparedStatement stmt = conn.prepareStatement("DELETE FROM DrinkkiAinesosa WHERE drinkki_id = ?");
+        
+        stmt.setInt(1, key);
+        stmt.executeUpdate();
+
+        stmt.close();
+        conn.close();
+    }
     
 }

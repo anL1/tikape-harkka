@@ -51,6 +51,14 @@ public class Main {
             return "";
         });
         
+        post("/drinkit/poista/:id", (req, res) -> {
+            drinkkiDao.delete(Integer.parseInt(req.params("id")));
+            drinkkiAinesosaDao.delete(Integer.parseInt(req.params("id")));
+            
+            res.redirect("/drinkit");
+            return "";
+        });
+        
         get("/", (req, res) -> {
             HashMap map = new HashMap<>();
             map.put("viesti", "Tervetuloa drinkkisovellukseen!");
