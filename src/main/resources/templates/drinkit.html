@@ -26,11 +26,11 @@
 
         <form method="POST" action="/lisaadrinkki">
             <p>Drinkin nimi</p>
-            <select>
+            <select name="drinkkinimi">
                 <option th:each="drinkki: ${drinkit}" value="${drinkki.id}" th:text="${drinkki.nimi}">drinkin nimi</option>
             </select> 
             <p>Ainesosan nimi</p>
-            <select>
+            <select name="ainesosanimi">
                 <option th:each="ainesosa: ${ainesosat}" value="${ainesosa.id}" th:text="${ainesosa.nimi}">ainesosan nimi</option>
             </select>
             <p>Järjestys</p>
