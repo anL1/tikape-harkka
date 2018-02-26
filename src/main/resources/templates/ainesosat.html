@@ -19,7 +19,8 @@
         <h2>Lisää uusi ainesosa</h2>
         <form method="POST" action="/ainesosat">
             <span>Ainesosan nimi:</span><br/>
-            <input type="text" name="name"/><br/>
+            <input type="text" name="name" pattern="[a-zA-Z0-9- ]{3,}"
+                    oninvalid="setCustomValidity('Tarkista ettet syötä erikoismerkkejä')"/><br/>
             <input type="submit" value="Lisää"/>
         </form>
         <p><a href="/">Takaisin etusivulle</a></p>

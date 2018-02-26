@@ -18,7 +18,8 @@
 
         <form method="POST" action="/drinkit">
             <span>Drinkin nimi:</span><br/>
-            <input type="text" name="name"/><br/>
+            <input type="text" name="name" pattern="[a-zA-Z0-9- ]{3,}"
+                    oninvalid="setCustomValidity('Tarkista ettet syötä erikoismerkkejä')"/><br/>
             <input type="submit" value="Lisää"/>
         </form>
 
@@ -34,9 +35,11 @@
                 <option th:each="ainesosa: ${ainesosat}" th:value="${ainesosa.id}" th:text="${ainesosa.nimi}">ainesosan nimi</option>
             </select>
             <p>Järjestys (lukuna)</p>
-            <input type="text" name="jarjestys"/><br/>
+            <input type="text" name="jarjestys" pattern="[0-9]+"
+                   oninvalid="setCustomValidity('Syötä ainoastaan lukuja')"/><br/>
             <p>Määrä (cl)</p>
-            <input type="text" name="maara"/><br/>
+            <input type="text" name="maara" pattern="[0-9]+"
+                   oninvalid="setCustomValidity('Syötä ainoastaan lukuja')"/><br/>
             <p>Ohje</p>
             <input type="text" name="ohje"/><br/>
             
