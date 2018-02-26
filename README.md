@@ -1,4 +1,5 @@
-# tikape-runko
+TIKAPE-harkka
 
-Tietokantojen perusteet -kurssilla tehtävän web-sovelluksen pohja.
+Tietokantojen perusteet -kurssille tehty web-sovellus.
 
+Sovellus löytyy osoitteesta: http://pakko-ottaa.herokuapp.com/
