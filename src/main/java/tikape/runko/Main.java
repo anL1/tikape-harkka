@@ -122,8 +122,8 @@ public class Main {
             try {
                 Drinkki drinkki = drinkkiDao.findOne(Integer.parseInt(req.queryParams("drinkkinimi")));
                 Ainesosa ainesosa = ainesosaDao.findOne(Integer.parseInt(req.queryParams("ainesosanimi")));
-                int jarjestys = Integer.parseInt(req.queryParams("jarjestys"));
-                int maara = Integer.parseInt((req.queryParams("maara")));
+                Integer jarjestys = Integer.parseInt(req.queryParams("jarjestys"));
+                Integer maara = Integer.parseInt((req.queryParams("maara")));
                 String ohje = req.queryParams("ohje");
 
                 System.out.println(ohje);
