@@ -89,8 +89,11 @@ public class Main {
         });
         
         get("/error2", (req, res) -> {
-            return "";
-        });
+            HashMap map = new HashMap();
+            map.put("error", null);
+            
+            return new ModelAndView(map, "error2");
+        }, new ThymeleafTemplateEngine());
         
         post("/lisaadrinkki", (req, res) -> {
             try {
