@@ -101,10 +101,10 @@ public class Main {
             ResultSet rs = statement.executeQuery();
 
             Integer maara = rs.getInt("count(*)");
-            System.out.println(maara);
 
             rs.close();
             statement.close();
+            connection.close();
 
             map.put("DrinkkienMaara", maara);
 
