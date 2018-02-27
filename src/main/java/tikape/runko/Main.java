@@ -100,7 +100,7 @@ public class Main {
             PreparedStatement statement = connection.prepareStatement("SELECT COUNT(*) FROM Drinkki");
             ResultSet rs = statement.executeQuery();
 
-            int maara = rs.getInt("count(*)");
+            Integer maara = rs.getInt("count(*)");
             System.out.println(maara);
 
             rs.close();
