@@ -93,23 +93,24 @@ public class Main {
             res.redirect("/drinkit");
             return "";
         });
-
-        get("/statistiikka", (req, res) -> {
-            HashMap map = new HashMap<>();
-            Connection connection = database.getConnection();
-            PreparedStatement statement = connection.prepareStatement("SELECT COUNT(*) FROM Drinkki");
-            ResultSet rs = statement.executeQuery();
-
-            Integer maara = rs.getInt("count(*)");
-
-            rs.close();
-            statement.close();
-            connection.close();
-
-            map.put("DrinkkienMaara", maara);
-
-            return new ModelAndView(map, "statistiikka");
-        }, new ThymeleafTemplateEngine());
+            
+        //statistiikka ei toimi herokussa, joten kommentteihin
+//        get("/statistiikka", (req, res) -> {
+//            HashMap map = new HashMap<>();
+//            Connection connection = database.getConnection();
+//            PreparedStatement statement = connection.prepareStatement("SELECT COUNT(*) FROM Drinkki");
+//            ResultSet rs = statement.executeQuery();
+//
+//            Integer maara = rs.getInt("count(*)");
+//
+//            rs.close();
+//            statement.close();
+//            connection.close();
+//
+//            map.put("DrinkkienMaara", maara);
+//
+//            return new ModelAndView(map, "statistiikka");
+//        }, new ThymeleafTemplateEngine());
 
         get("/error2", (req, res) -> {
             HashMap map = new HashMap();
