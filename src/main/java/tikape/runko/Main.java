@@ -58,8 +58,8 @@ public class Main {
         });
 
         post("/drinkit/poista/:id", (req, res) -> {
-            drinkkiDao.delete(Integer.parseInt(req.params("id")));
             drinkkiAinesosaDao.delete(Integer.parseInt(req.params("id")));
+            drinkkiDao.delete(Integer.parseInt(req.params("id")));
 
             res.redirect("/drinkit");
             return "";
